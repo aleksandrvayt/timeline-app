@@ -84,7 +84,6 @@ body {
 
 .content-right {
   margin-left: calc(50% + var(--marker-size) / 2 + var(--content-offset));
-  text-align: left;
   top: 0;
 }
 
@@ -114,6 +113,7 @@ body {
               0 4px 6px -4px rgba(230, 230, 230, 0.4);
   position: absolute;
   max-width: 400px;
+  text-align: left;
 }
 
 .content-block.visible {
@@ -122,9 +122,12 @@ body {
 }
 
 @media (max-width: 600px) {
+  @media(max-width:600px) {
+  :root {
+  --content-offset: 20px;
+}
   .content-block {
-    max-width: 130px;
-    margin: var(--spacing) auto 0 auto;
-    text-align: left;
+    min-width: 110px;
   }
+}
 }
