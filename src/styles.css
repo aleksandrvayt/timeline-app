@@ -1,0 +1,130 @@
+:root {
+  --line-width: 4px;
+  --line-color: #ccc;
+  --progress-color: #cc0000;
+  --marker-size: 30px;
+  --marker-border: 4px;
+  --spacing: 300px;
+  --content-offset: 50px;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #fafafa;
+}
+
+.timeline-container {
+  position: relative;
+  padding: 100px 0;
+}
+
+.timeline {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--line-width);
+  top: calc(100px + var(--marker-size) / 2);
+  bottom: calc(90px + var(--marker-size) / 2);
+  background: var(--line-color);
+}
+
+.timeline-progress {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: var(--progress-color);
+  top: 0;
+  height: 0;
+  transform-origin: top;
+  transition: height 0.2s ease-out;
+}
+
+.timeline-event {
+  position: relative;
+  margin-top: var(--spacing);
+  width: 100%;
+}
+
+.timeline-start {
+  margin: 0;
+}
+
+.marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--marker-size);
+  height: var(--marker-size);
+  border-radius: 50%;
+  background: var(--line-color);
+  border: var(--marker-border) solid white;
+  box-shadow: 0 0 0 2px var(--line-color);
+  transition: background 0.3s, box-shadow 0.3s;
+  top: 0;
+}
+
+.marker::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -40%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid white;
+  border-right: 2px solid white;
+}
+
+.content-left {
+  right: 0;
+  margin-right: calc(50% + var(--marker-size) / 2 + var(--content-offset));
+  text-align: right;
+}
+
+.content-right {
+  margin-left: calc(50% + var(--marker-size) / 2 + var(--content-offset));
+  text-align: left;
+  top: 0;
+}
+
+.content-date {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.timeline-event.active .marker {
+  background: #cc0000;
+  box-shadow: 0 0 0 2px var(--progress-color);
+}
+
+.timeline-event.active .content-date {
+  color: #cc0000;
+}
+
+.content-block {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #f5f5f5;
+  border-radius: 0.625rem;
+  box-shadow: 0 10px 15px -3px rgba(230, 230, 230, 0.4),
+              0 4px 6px -4px rgba(230, 230, 230, 0.4);
+  position: absolute;
+  max-width: 400px;
+}
+
+.content-block.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .content-block {
+    max-width: 130px;
+    margin: var(--spacing) auto 0 auto;
+    text-align: left;
+  }
+}

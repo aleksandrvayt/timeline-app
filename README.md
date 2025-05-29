@@ -11,3 +11,7 @@
 Перейти:
 
 ### `http://localhost:5173/`
+
+Github Pages:
+
+### `https://aleksandrvayt.github.io/timeline-app/`
